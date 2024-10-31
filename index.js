@@ -169,7 +169,7 @@ app.post('/car', (req, res) => {
  *                 $ref: '#/components/schemas/Car'
  */
 app.get('/car', (req, res) => {
-    const cars = Array.from(carMap.values());
+    const cars = Array.from(carMap, ([id, value]) => ({id, value}));
     res.json(cars);
 });
 
