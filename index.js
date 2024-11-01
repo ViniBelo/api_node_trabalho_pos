@@ -63,12 +63,12 @@ const carMap = new Map();
  *         place:
  *           type: object
  *           properties:
- *             lat:
+ *             latitude:
  *               type: number
- *               description: Latitude do local
- *             long:
+ *               description: latitudeitude do local
+ *             longitude:
  *               type: number
- *               description: Longitude do local
+ *               description: longitudeitude do local
  *       example:
  *         id: "001"
  *         imageUrl: "https://image"
@@ -76,8 +76,8 @@ const carMap = new Map();
  *         name: "Gaspar"
  *         license: "ABC-1234"
  *         place:
- *           lat: 0
- *           long: 0
+ *           latitude: 0
+ *           longitude: 0
  */
 
 /**
@@ -113,8 +113,8 @@ app.post('/car', (req, res) => {
             name &&
             license &&
             place &&
-            place.lat !== undefined &&
-            place.long !== undefined
+            place.latitude !== undefined &&
+            place.longitude !== undefined
         );
     };
 
@@ -237,7 +237,7 @@ app.patch('/car/:id', (req, res) => {
         return res.status(404).json({ error: 'Carro não encontrado' });
     }
 
-    if (!imageUrl || !year || !name || !license || !place || place.lat == undefined || place.long == undefined) {
+    if (!imageUrl || !year || !name || !license || !place || place.latitude == undefined || place.longitude == undefined) {
         return res.status(400).json({ error: 'JSON inválido ou incompleto' });
     }
 
