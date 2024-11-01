@@ -42,7 +42,7 @@ const carMap = new Map();
  *         - imageUrl
  *         - year
  *         - name
- *         - licence
+ *         - license
  *         - place
  *       properties:
  *         id:
@@ -57,7 +57,7 @@ const carMap = new Map();
  *         name:
  *           type: string
  *           description: Nome do carro
- *         licence:
+ *         license:
  *           type: string
  *           description: Placa do carro
  *         place:
@@ -74,7 +74,7 @@ const carMap = new Map();
  *         imageUrl: "https://image"
  *         year: "2020/2020"
  *         name: "Gaspar"
- *         licence: "ABC-1234"
+ *         license: "ABC-1234"
  *         place:
  *           lat: 0
  *           long: 0
@@ -105,13 +105,13 @@ app.post('/car', (req, res) => {
     const body = req.body;
 
     const validateCar = (car) => {
-        const { id, imageUrl, year, name, licence, place } = car;
+        const { id, imageUrl, year, name, license, place } = car;
         return (
             id &&
             imageUrl &&
             year &&
             name &&
-            licence &&
+            license &&
             place &&
             place.lat !== undefined &&
             place.long !== undefined
@@ -196,7 +196,7 @@ app.get('/car/:id', (req, res) => {
     const id = req.params.id;
 
     if (carMap.has(id)) {
-        res.json({ id, value: carMap.get(id) });
+        res.json( carMap.get(id) );
     } else {
         res.status(404).json({ error: 'Carro não encontrado' });
     }
@@ -231,13 +231,13 @@ app.get('/car/:id', (req, res) => {
 app.patch('/car/:id', (req, res) => {
     var body = req.body;
     const id = req.params.id;
-    const { imageUrl, year, name, licence, place } = req.body;
+    const { imageUrl, year, name, license, place } = req.body;
 
     if (!carMap.has(id)) {
         return res.status(404).json({ error: 'Carro não encontrado' });
     }
 
-    if (!imageUrl || !year || !name || !licence || !place || place.lat == undefined || place.long == undefined) {
+    if (!imageUrl || !year || !name || !license || !place || place.lat == undefined || place.long == undefined) {
         return res.status(400).json({ error: 'JSON inválido ou incompleto' });
     }
 
